@@ -1,0 +1,59 @@
+# =====================
+# Python virtual env
+# =====================
+venv/
+env/
+ENV/
+.venv/
+
+# =====================
+# Python cache
+# =====================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =====================
+# Logs
+# =====================
+*.log
+
+# =====================
+# Environment variables
+# =====================
+.env
+.env.*
+
+# =====================
+# IDE / Editor files
+# =====================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =====================
+# OS files
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# Jupyter Notebook checkpoints
+# =====================
+.ipynb_checkpoints/
+
+# =====================
+# FastAPI / Python local cache
+# =====================
+*.sqlite3
+*.db
+
+# =====================
+# LangChain / ML cache (optional but useful)
+# =====================
+.cache/
+huggingface_hub/
+transformers_cache/
+datasets/
