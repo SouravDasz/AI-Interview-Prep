@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Library from "./pages/Library.jsx";
 import MockInterview from "./pages/MockInterview.jsx";
 import Exam from "./pages/Exam.jsx";
+import ChatBoard from "./pages/Chatboard.jsx";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
       <Route path="/library" element={<Library />} />
       <Route path="/interview" element={<MockInterview />} />
       <Route path="/exam" element={<Exam />} />
+      <Route path="/chat" element={<ChatBoard />} />
       <Route path="*" element={<Landing />} />
     </Routes>
   );

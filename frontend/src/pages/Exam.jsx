@@ -22,7 +22,8 @@ const SUBJECTS = [
   "Generative AI",
   "Cloud Computing",
   "System Design",
-  "Software Engineering"
+  "Software Engineering",
+   
 ];
 
 export default function Exam() {
