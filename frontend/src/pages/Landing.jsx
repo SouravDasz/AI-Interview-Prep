@@ -58,7 +58,7 @@ const features = [
 export default function Landing() {
   return (
     <div className="page">
-      <Navbar />
+      <Navbar landingPage={true} />
       <main className="page-body">
         {/* HERO */}
         <section className="hero">

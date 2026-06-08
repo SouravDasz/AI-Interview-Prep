@@ -10,12 +10,15 @@ import Library from "./pages/Library.jsx";
 import MockInterview from "./pages/MockInterview.jsx";
 import Exam from "./pages/Exam.jsx";
 import ChatBoard from "./pages/Chatboard.jsx";
+import SignUp from "./pages/SignUp.jsx";
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+
       <Route path="/onboarding" element={<Onboarding />} />
       <Route path="/courses" element={<Courses />} />
       <Route path="/course" element={<CourseModules />} />

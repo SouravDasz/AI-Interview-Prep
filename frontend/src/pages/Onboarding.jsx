@@ -26,7 +26,11 @@ const paths = [
 export default function Onboarding() {
   const [selected, setSelected] = useState("student");
   const navigate = useNavigate();
+const handleContinue = () => {
+  localStorage.setItem("userRole", selected);
 
+  navigate("/signin");
+};
   return (
     <div className="onboard">
       <div className="onboard-inner">
@@ -55,11 +59,11 @@ export default function Onboarding() {
         </div>
 
         <button
-          className="btn btn-primary btn-lg"
-          onClick={() => navigate("/dashboard")}
+      className="btn btn-primary btn-lg"
+      onClick={handleContinue}
         >
-          Go to Dashboard
-        </button>
+        Continue
+      </button>
       </div>
     </div>
   );

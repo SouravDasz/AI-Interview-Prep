@@ -1,12 +1,56 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Zap,  Fingerprint, BrainCircuit, Server, Workflow } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { GoogleLogin} from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+import { saveUser } from "../services/SignInApi";
+import { useState } from "react";
+import { sendOtpApi, verifyOtpApi } from "../services/OTPApi";
+
 export default function SignIn() {
+const [email, setEmail] = useState("");
+const [otp, setOtp] = useState("");
+const [otpSent, setOtpSent] = useState(false);
+
   const navigate = useNavigate();
   const go = (e) => {
     e.preventDefault();
     navigate("/onboarding");
   };
+ const sendOTP = async () => {
+  try {
+    const res =
+      await sendOtpApi(email);
+
+    if (res.success) {
+      alert("OTP Sent");
+      setOtpSent(true);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+const verifyOTP = async () => {
+  try {
+    const res =
+      await verifyOtpApi(
+        email,
+        otp
+      );
+
+    if (res.success) {
+      localStorage.setItem(
+        "isLoggedIn",
+        "true"
+      );
+
+      navigate("/dashboard");
+    } else {
+      alert("Invalid OTP");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   return (
     <div className="auth">
@@ -51,57 +95,108 @@ export default function SignIn() {
         <p className="muted" style={{ marginTop: 6 }}>
           Welcome back to LearnPro.
         </p>
+ 
+           <div style={{ marginTop: 26 }}>
+  <div >
+    <GoogleLogin
+  onSuccess={async (credentialResponse) => {
+    try {
+      const user = jwtDecode(
+        credentialResponse.credential
+      );
 
-        <div style={{ marginTop: 26 }}>
-          <button className="oauth-btn oauth-google" onClick={go}>
-            <svg width="17" height="17" viewBox="0 0 48 48">
-              <path
-                fill="#FFC107"
-                d="M43.6 20.5H42V20H24v8h11.3C33.7 32.4 29.3 35 24 35c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 5.1 29.6 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.2-.1-2.3-.4-3.5z"
-              />
-              <path
-                fill="#FF3D00"
-                d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 5.1 29.6 3 24 3 16.3 3 9.7 7.3 6.3 14.7z"
-              />
-              <path
-                fill="#4CAF50"
-                d="M24 45c5.2 0 9.9-2 13.5-5.2l-6.2-5.3C29.2 36.3 26.7 37 24 37c-5.3 0-9.7-2.6-11.3-7l-6.5 5C9.6 40.6 16.2 45 24 45z"
-              />
-              <path
-                fill="#1976D2"
-                d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.2-4.2 5.5l6.2 5.3C40.9 36 44 30.6 44 24c0-1.2-.1-2.3-.4-3.5z"
-              />
-            </svg>
-            Continue with Google
-          </button>
-          <button className="oauth-btn oauth-github" onClick={go}>
-            <FaGithub size={17} /> Continue with GitHub
-          </button>
-          <button className="oauth-btn oauth-linkedin" onClick={go}>
-            <FaLinkedin size={17} /> Continue with LinkedIn
-          </button>
-        </div>
+      console.log(user);
 
-        <div className="divider">or sign in with instant link</div>
+      const role =
+        localStorage.getItem("userRole");
 
-        <form onSubmit={go}>
-          <input className="field" type="email" placeholder="Email Address" required />
-          <button
-            className="btn btn-primary btn-block btn-lg"
-            style={{ marginTop: 12 }}
-            type="submit"
-          >
-            Send Magic Link / OTP
-          </button>
-        </form>
+      const userData = {
+        login_type: "google",
+        name: user.name,
+        email: user.email,
+        picture: user.picture,
+        role: role,
+        google_id: user.sub,
+      };
 
-        <button className="biometric" onClick={go}>
-          <Fingerprint size={18} /> Fast sign-in via Biometrics
-        </button>
+      const result =
+        await saveUser(userData);
+
+      console.log(result);
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(user)
+      );
+
+      localStorage.setItem(
+        "isLoggedIn",
+        "true"
+      );
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+    }
+  }}
+  onError={() => {
+    console.log("Login Failed");
+  }}
+  theme="outline"
+  size="large"
+  text="continue_with"
+/>
+  </div>
+</div>
+
+<div className="divider">or sign in with OTP</div>
+
+  <form
+  onSubmit={(e) => e.preventDefault()}
+>
+  <input
+    className="field"
+    type="email"
+    placeholder="Email Address"
+    value={email}
+    onChange={(e) =>
+      setEmail(e.target.value)
+    }
+    required
+  />
+
+  {!otpSent ? (
+    <button
+      className="btn btn-primary btn-block btn-lg"
+      onClick={sendOTP}
+    >
+      Send OTP
+    </button>
+  ) : (
+    <>
+      <input
+        className="field"
+        type="text"
+        placeholder="Enter OTP"
+        value={otp}
+        onChange={(e) =>
+          setOtp(e.target.value)
+        }
+      />
+
+      <button
+        className="btn btn-primary btn-block btn-lg"
+        onClick={verifyOTP}
+      >
+        Verify OTP
+      </button>
+    </>
+  )}
+</form>
 
         <p className="muted center" style={{ marginTop: 22, fontSize: 14 }}>
           Don't have an account?{" "}
-          <Link to="/onboarding" className="green" style={{ fontWeight: 600 }}>
+          <Link to="/signup" className="green" style={{ fontWeight: 600 }}>
             Sign Up
           </Link>
         </p>
