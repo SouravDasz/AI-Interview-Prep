@@ -5,11 +5,11 @@ from routers.auth_route import auth_router
 from routers.otp_route import otp_router
 from database.database import engine
 from models.user_model import UserDB
-
+from routers.chatbot import router as chatbot_router
 app=FastAPI()
 UserDB.metadata.create_all(bind=engine)
 
-router_list=[question_router,auth_router,otp_router]
+router_list=[question_router,auth_router,otp_router,chatbot_router]
 
 for router in router_list:
     app.include_router(router)
