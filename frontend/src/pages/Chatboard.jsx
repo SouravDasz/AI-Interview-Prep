@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar";
 import "./ChatBoard.css";
 
 import {
@@ -19,40 +20,7 @@ export default function ChatBoard() {
     <div className="chat-page">
 
       {/* Navbar */}
-      <nav className="navbar">
-        <div className="navbar-container">
-
-          <div className="logo-section">
-            <div className="logo-icon">
-              <Bot size={22} />
-            </div>
-
-            <h1 className="logo-text">LearnPro</h1>
-          </div>
-
-          <div className="nav-links">
-            <a href="#">Courses</a>
-            <a href="#">Library</a>
-            <a href="#">Roadmaps</a>
-            <a href="#">Dashboard</a>
-          </div>
-
-          <div className="nav-right">
-            <button className="icon-btn">
-              <Bell size={18} />
-            </button>
-
-            <div className="profile-box">
-              <img
-                src="https://i.pravatar.cc/40"
-                alt="profile"
-              />
-              <span>Kamal</span>
-            </div>
-          </div>
-
-        </div>
-      </nav>
+       <Navbar/>
 
       {/* Main */}
       <div className="chat-wrapper">

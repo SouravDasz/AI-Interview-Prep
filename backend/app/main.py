@@ -5,12 +5,21 @@ from routers.auth_route import auth_router
 from routers.otp_route import otp_router
 from database.database import engine
 from models.user_model import UserDB
+<<<<<<< HEAD
 from routers.chatbot import router as chatbot_router
 from routers.genrel_chatbot import router as genrel_chatbot
 app=FastAPI()
 UserDB.metadata.create_all(bind=engine)
 
 router_list=[question_router,auth_router,otp_router,chatbot_router,genrel_chatbot]
+=======
+from routers.chatbot import chatcontent_router
+from routers.rag_chatbot import chatsubject_router
+app=FastAPI()
+UserDB.metadata.create_all(bind=engine)
+
+router_list=[question_router,auth_router,otp_router,chatcontent_router,chatsubject_router]
+>>>>>>> 217ebaf (chat bord ui is corrected)
 
 for router in router_list:
     app.include_router(router)

@@ -1,3 +1,4 @@
+import FloatingAIBot from "../components/FloatingAIBot.jsx";
 import Sidebar from "../components/Sidebar.jsx";
 import { Download, Share2, BarChart3, Clock, Award, Star, TrendingUp } from "lucide-react";
 
@@ -198,6 +199,7 @@ export default function Dashboard() {
           </div>
         </div>
       </main>
+      <FloatingAIBot />
     </div>
   );
 }

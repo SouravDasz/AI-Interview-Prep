@@ -123,6 +123,7 @@ const verifyOTP = async () => {
         await saveUser(userData);
 
       console.log(result);
+      // localStorage.setItem("picture",user.picture)
 
       localStorage.setItem(
         "user",

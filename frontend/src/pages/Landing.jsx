@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import {
@@ -11,7 +11,9 @@ import {
   Video,
   Trophy,
   ChevronRight,
+  Bot
 } from "lucide-react";
+import FloatingAIBot from "../components/FloatingAIBot.jsx";
 
 const HERO =
   "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=600&fit=crop&crop=faces";
@@ -56,7 +58,17 @@ const features = [
 ];
 
 export default function Landing() {
+const navigate=useNavigate()
+  const handleGetStarted = () => {
+  const loggedIn = localStorage.getItem("isLoggedIn");
+  if (loggedIn === "true") {
+    navigate("/dashboard"); // or dashboard
+  } else {
+    navigate("/onboarding");
+  }
+};
   return (
+    
     <div className="page">
       <Navbar landingPage={true} />
       <main className="page-body">
@@ -74,9 +86,11 @@ export default function Landing() {
                 Tailored learning paths designed for the ambitious, lifelong learner.
               </p>
               <div className="hero-actions">
-                <Link to="/onboarding" className="btn btn-primary btn-lg">
+                <button 
+                onClick={handleGetStarted}
+                 className="btn btn-primary btn-lg">
                   Learn Now <ArrowRight size={17} />
-                </Link>
+                </button>
                 <div className="mini-progress">
                   <span className="dot">
                     <Play size={15} />
@@ -172,6 +186,7 @@ export default function Landing() {
           </div>
         </section>
       </main>
+      <FloatingAIBot />
       <Footer />
     </div>
   );

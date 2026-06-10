@@ -11,6 +11,7 @@ import {
   Map,
   ChevronDown,
 } from "lucide-react";
+import FloatingAIBot from "../components/FloatingAIBot.jsx";
 
 const subjects = [
   { n: 1, icon: <Database size={20} />, name: "DBMS", res: 12, pct: 60 },
@@ -132,6 +133,7 @@ export default function CourseModules() {
           </aside>
         </div>
       </main>
+      <FloatingAIBot />
     </div>
   );
 }

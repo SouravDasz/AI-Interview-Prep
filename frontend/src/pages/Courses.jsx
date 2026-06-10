@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import { Search, Zap, Award, Users, ArrowUpRight, Plus } from "lucide-react";
+import FloatingAIBot from "../components/FloatingAIBot.jsx";
 
 const continueItems = [
   {
@@ -177,6 +178,7 @@ export default function Courses() {
           </div>
         </section>
       </main>
+      <FloatingAIBot />
       <Footer />
     </div>
   );

@@ -1,3 +1,4 @@
+import FloatingAIBot from "../components/FloatingAIBot.jsx";
 import Sidebar from "../components/Sidebar.jsx";
 import { Check, Code2, Lock, Server, Gauge, Flag, Users } from "lucide-react";
 
@@ -69,6 +70,7 @@ export default function Roadmaps() {
           ))}
         </div>
       </main>
+      <FloatingAIBot />
     </div>
   );
 }

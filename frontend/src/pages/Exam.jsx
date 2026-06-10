@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Flag, ChevronLeft, ChevronRight } from "lucide-react";
 import { getQuestions } from "../services/ExamApi";
+import FloatingAIBot from "../components/FloatingAIBot";
 
 const SUBJECTS = [
   "DSA",
@@ -337,6 +338,7 @@ const cells = Array.from(
           </div>
         </div>
       </main>
+      <FloatingAIBot />
     </div>
     </>
   );

@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import { Mic, VideoIcon, Clock, Lightbulb, Send, User } from "lucide-react";
+import FloatingAIBot from "../components/FloatingAIBot.jsx";
 
 export default function MockInterview() {
   return (
@@ -83,6 +84,7 @@ export default function MockInterview() {
           </div>
         </div>
       </main>
+      <FloatingAIBot />
       <Footer />
     </div>
   );

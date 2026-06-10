@@ -1,0 +1,198 @@
+.floating-bot {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  z-index: 9999;
+
+  animation: floatBot 3s ease-in-out infinite;
+}
+
+/* Pulse Effect */
+
+.bot-pulse {
+  position: absolute;
+
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+
+  border: 2px solid #10b981;
+
+  animation: pulse 2s infinite;
+}
+
+/* Robot */
+
+.robot {
+  position: relative;
+
+  width: 65px;
+  height: 65px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Head */
+
+.robot-head {
+  width: 60px;
+  height: 50px;
+
+  background: linear-gradient(
+    145deg,
+    #0f172a,
+    #1e293b
+  );
+
+  border: 2px solid #10b981;
+
+  border-radius: 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  box-shadow:
+    0 0 15px rgba(16,185,129,.5),
+    inset 0 0 15px rgba(16,185,129,.15);
+}
+
+/* Eyes */
+
+.eyes {
+  display: flex;
+  gap: 10px;
+}
+
+.eyes span {
+  width: 8px;
+  height: 8px;
+
+  background: #10b981;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 10px #10b981,
+    0 0 20px #10b981;
+
+  animation: blink 4s infinite;
+}
+
+/* Mouth */
+
+.mouth {
+  width: 18px;
+  height: 4px;
+
+  margin-top: 8px;
+
+  background: #10b981;
+
+  border-radius: 10px;
+
+  box-shadow: 0 0 10px #10b981;
+}
+
+/* Antenna */
+
+.antenna {
+  position: absolute;
+
+  top: -12px;
+
+  width: 3px;
+  height: 12px;
+
+  background: #10b981;
+}
+
+.antenna::after {
+  content: "";
+
+  position: absolute;
+
+  top: -6px;
+  left: -4px;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #10b981;
+
+  box-shadow:
+    0 0 10px #10b981,
+    0 0 20px #10b981;
+}
+
+/* Floating */
+
+@keyframes floatBot {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Pulse */
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Blink */
+
+@keyframes blink {
+  0%, 45%, 50%, 100% {
+    transform: scaleY(1);
+  }
+
+  48% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* Mobile */
+
+@media (max-width:768px) {
+  .floating-bot {
+    width: 65px;
+    height: 65px;
+
+    right: 16px;
+    bottom: 16px;
+  }
+}

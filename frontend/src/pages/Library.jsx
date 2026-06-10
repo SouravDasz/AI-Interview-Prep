@@ -12,6 +12,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import FloatingAIBot from "../components/FloatingAIBot.jsx";
 
 const THUMB1 =
   "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=240&fit=crop";
@@ -136,6 +137,7 @@ export default function Library() {
           </div>
         </div>
       </main>
+      <FloatingAIBot />
       <Footer />
     </div>
   );

@@ -21,6 +21,7 @@ Your LearnPro OTP is:
 This OTP will expire in 5 minutes.
 
 Do not share it with anyone.
+Stay safe and stay healthy
 """
 
     msg = MIMEText(body)

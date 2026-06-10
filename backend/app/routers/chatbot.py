@@ -6,10 +6,10 @@ from services.retriver_logic import db_retriver
 from services.chatbot import query_prompt,query_dict
 from services.llm import model
 
-router=APIRouter(prefix="/content")
+chatcontent_router=APIRouter(prefix="/content")
 
 
-@router.post("/{subject}")
+@chatcontent_router.post("/{subject}")
 def chatbot(subject: str, question: Question):
 
     retriever = db_retriver(subject=subject)
