@@ -5,6 +5,7 @@ from schemas.chatbot_schema import Question
 from services.retriver_logic import genrel_retriver
 from services.chatbot import genrel_prompt
 from langchain_core.output_parsers import StrOutputParser
+
 router=APIRouter(prefix="/overview")
 
 @router.post("/chatbot")

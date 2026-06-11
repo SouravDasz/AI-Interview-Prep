@@ -5,23 +5,9 @@ from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
-<<<<<<< HEAD
 
 
 embedding_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-=======
-from pathlib import Path
-# pdf_path = r"C:\study platform\AI-Interview-Prep\backend\subject pdf"
-#this is pdf file location of my pc
-pdf_path=r"D:\AI Interview Preparation\backend\subject pdf" 
-print("PDF Path =", pdf_path)
-print("Exists =", Path(pdf_path).exists())
-document=DirectoryLoader(
-    path=r"D:\AI Interview Preparation\backend\subject pdf",
-    glob="*.pdf",
-    loader_cls=PyPDFLoader
-)
->>>>>>> 217ebaf (chat bord ui is corrected)
 
 
 def _load_subject_documents():
@@ -40,14 +26,6 @@ def _load_subject_documents():
 
     return documents
 
-<<<<<<< HEAD
-=======
-vector_store = Chroma.from_documents(
-    documents=chunks,
-    embedding=embedding_model,
-    persist_directory=r"D:\AI Interview Preparation\backend\vectordb"
-)
->>>>>>> 217ebaf (chat bord ui is corrected)
 
 def _load_general_documents():
     document = DirectoryLoader(
